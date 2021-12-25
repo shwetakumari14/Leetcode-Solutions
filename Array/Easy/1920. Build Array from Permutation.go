@@ -10,9 +10,9 @@ func main() {
 }
 
 func buildArrayPermutation(arr []int) []int {
-	result := make([]int, len(arr))
+	ans := make([]int, len(arr))
 	for key := range arr {
-		result[key] = arr[arr[key]]
+		ans[key] = arr[arr[key]]
 	}
-	return result
+	return ans
 }
