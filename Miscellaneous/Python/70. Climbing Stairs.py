@@ -1,6 +1,3 @@
-import re
-
-
 class Solution:
     def stairsCount1(self, x):
         if x == 1:
