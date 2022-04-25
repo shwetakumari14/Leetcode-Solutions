@@ -1,6 +1,3 @@
-import re
-
-
 class Solution:
     def romanToInt(self, s):
         romans = {
