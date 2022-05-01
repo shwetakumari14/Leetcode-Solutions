@@ -5,14 +5,17 @@ import "fmt"
 func main() {
 	num := 00000000000000000000000000001011
 	var n uint32 = uint32(num)
-	result := reverseBits(n)
+	result := hammingWeight(n)
 	fmt.Println(result)
 }
 
-func reverseBits(num uint32) uint32 {
-	var res uint32
+func hammingWeight(num uint32) int {
+	res := 0
+
 	for i := 0; i < 32; i++ {
-		res = res<<1 + num&1
+		if num&uint32(1) == 1 {
+			res += 1
+		}
 		num >>= 1
 	}
 	return res
