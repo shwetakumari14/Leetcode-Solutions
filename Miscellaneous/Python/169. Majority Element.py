@@ -1,6 +1,3 @@
-from re import I
-
-
 class Solution:
    def majorityElement(self, arr):
         res, times = 0, 0
