@@ -15,7 +15,7 @@ class Solution:
             steps -= 1
             if steps == 0:
                 jumps += 1
-                if i >= maxLen:
+                if i > maxLen:
                     return -1
                 steps = maxLen - i
 
