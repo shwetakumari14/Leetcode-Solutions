@@ -1,7 +1,6 @@
 class Solution:
     def reverseString(self, str):
         str = str[::-1]
-       
 
         return str
 
