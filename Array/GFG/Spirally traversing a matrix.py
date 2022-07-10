@@ -1,30 +1,27 @@
 class Solution:
     def spiralMatrix(self, matrix, r, c):
-        ans = []
-  
-        if (len(matrix) == 0):
-            return ans
-    
-        seen = [[0 for i in range(r)] for j in range(r)]
-        dr = [0, 1, 0, -1]
-        dc = [1, 0, -1, 0]
-        x = 0
-        y = 0
-        di = 0
-    
-        for i in range(r * c):
-            ans.append(matrix[x][y])
-            seen[x][y] = True
-            cr = x + dr[di]
-            cc = y + dc[di]
-    
-            if (0 <= cr and cr < r and 0 <= cc and cc < c and not(seen[cr][cc])):
-                x = cr
-                y = cc
-            else:
-                di = (di + 1) % 4
-                x += dr[di]
-                y += dc[di]
+        ans, k = [], 0
+
+        stRow, endRow, stCol, endCol = 0, r-1, 0, c-1
+
+        while stRow <= endRow and stCol <= endCol:
+
+            for i in range(stCol, endCol+1):
+                ans.append(matrix[stRow][i])
+            stRow += 1
+
+            for i in range(stRow, endRow+1):
+                ans.append(matrix[i][endCol])
+            endCol -= 1
+
+            for i in range(endCol, stCol-1, -1):
+                ans.append(matrix[endRow][i])
+            endRow -= 1
+
+            for i in range(endRow, stRow-1, -1):
+                ans.append(matrix[i][stCol])
+            stCol += 1
+
         return ans
 
 obj = Solution()
