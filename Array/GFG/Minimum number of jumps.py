@@ -15,13 +15,13 @@ class Solution:
             steps -= 1
             if steps == 0:
                 jumps += 1
-                if i > maxLen:
+                if i >= maxLen:
                     return -1
                 steps = maxLen - i
 
         return jumps
 
 obj = Solution()
-arr, n = [2, 3, 1, 1, 2, 4, 2, 0, 1, 1], 10
+arr, n = [2, 1, 0, 4], 4
 ans = obj.minJumps(arr, n)
 print(ans)
