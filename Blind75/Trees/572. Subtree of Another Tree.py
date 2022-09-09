@@ -12,6 +12,7 @@ def isSymmetric(root1, root2):
         if root1.val == root2.val:
             return isSymmetric(root1.left, root2.left) and isSymmetric(root1.right, root2.right)
     
+    return False
 
 class Solution:
     def isSubtree(self, root, subRoot):
