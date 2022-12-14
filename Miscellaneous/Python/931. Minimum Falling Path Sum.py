@@ -1,6 +1,6 @@
 class Solution:
     def minFallingPathSum(self, matrix):
-        n, minFallingSum = len(matrix), float("inf")
+        n = len(matrix)
 
         for i in range(1, n):
             for j in range(n):
