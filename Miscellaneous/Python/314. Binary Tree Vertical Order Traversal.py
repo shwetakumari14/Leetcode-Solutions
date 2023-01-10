@@ -26,8 +26,6 @@ class Solution:
         
         return [columnTable[i] for i in sorted(columnTable.keys())]
 
-        
-
 
 obj = Solution()
 root = TreeNode(3)
