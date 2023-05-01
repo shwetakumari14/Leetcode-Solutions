@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/search2">
+    <fragment
+        android:id="@+id/search2"
+        android:name="com.example.cscihw9.search"
+        android:label="search"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_search2_to_eventListing2"
+            app:destination="@id/eventListing2" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventListing2"
+        android:name="com.example.cscihw9.EventListing"
+        android:label="EventListing"
+        tools:layout="@layout/no_result">
+        <action
+            android:id="@+id/action_eventListing2_to_search23"
+            app:destination="@id/search2" />
+    </fragment>
+</navigation>
