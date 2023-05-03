@@ -21,5 +21,13 @@
         <action
             android:id="@+id/action_eventListing2_to_search23"
             app:destination="@id/search2" />
+        <action
+            android:id="@+id/action_eventListing2_to_eventDetails"
+            app:destination="@id/eventDetails" />
     </fragment>
+    <activity
+        android:id="@+id/eventDetails"
+        android:name="com.example.cscihw9.EventDetails"
+        android:label="activity_event_details"
+        tools:layout="@layout/activity_event_details" />
 </navigation>

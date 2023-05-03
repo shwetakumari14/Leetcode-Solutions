@@ -8,14 +8,19 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-public class Adapter extends FragmentPagerAdapter {
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-    public Adapter(FragmentManager fm) {
-        super(fm);
+public class Adapter extends FragmentStateAdapter {
+
+    public Adapter(@NonNull FragmentActivity fragmentActivity) {
+        super(fragmentActivity);
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public Fragment createFragment(int position) {
         switch (position) {
             case 0:
                 return new NavHost();
@@ -27,52 +32,18 @@ public class Adapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public int getCount() {
+    public int getItemCount() {
         return 2; // two tabs
     }
 
     @Override
-    public CharSequence getPageTitle(int position) {
-        switch (position) {
-            case 0:
-                return "SEARCH";
-            case 1:
-                return "FAVORITES";
-            default:
-                return null;
-        }
+    public long getItemId(int position) {
+        // If you have stable IDs, return them here.
+        // This can help optimize your adapter.
+        return super.getItemId(position);
     }
 }
 
 
-//public class Adapter extends FragmentPagerAdapter {
-//
-//    private final ArrayList<Fragment> fragmentList = new ArrayList<>();
-//    private final ArrayList<String> titleList = new ArrayList<>();
-//
-//    public Adapter(@NonNull FragmentManager fm, int behavior) {
-//        super(fm, behavior);
-//    }
-//
-//    @NonNull
-//    @Override
-//    public Fragment getItem(int position) {
-//        return fragmentList.get(position);
-//    }
-//
-//    @Override
-//    public int getCount() {
-//        return fragmentList.size();
-//    }
-//
-//    public void addFragment(Fragment fragment, String title) {
-//        fragmentList.add(fragment);
-//        titleList.add(title);
-//    }
-//
-//    @Nullable
-//    @Override
-//    public CharSequence getPageTitle(int position) {
-//        return titleList.get(position);
-//    }
-//}
+
+

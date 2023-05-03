@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/registerCard"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="8dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <RelativeLayout
+            android:id="@+id/part1"
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/artistImgCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/black"
+                app:cardCornerRadius="20dp">
+
+                <ImageView
+                    android:id="@+id/artistImg"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:scaleType="centerCrop"
+                    android:padding="8dp"
+
+                    android:background="@drawable/image_corners"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/artistName"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/artistImgCard"
+                android:text="Ross"
+                android:textColor="@color/light_grey"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/popularity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="126dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/artistName"
+                android:gravity="right"
+                android:paddingTop="5dp"
+                android:text="Popularity"
+                android:textColor="@color/light_grey"
+                android:textSize="16dp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/followers"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/artistName"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="-33dp"
+                android:layout_toRightOf="@+id/artistImgCard"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="434K Followers"
+                android:textColor="@color/light_grey"
+                android:textSize="16dp" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/popularity"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/followers">
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/popularityProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progress="80"
+                    app:indicatorColor="@color/pink"
+                    app:trackThickness="5dp" />
+
+                <TextView
+                    android:id="@+id/popularityProgressText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="80"
+                    android:textColor="@color/light_grey" />
+
+            </RelativeLayout>
+
+
+
+            <TextView
+                android:id="@+id/spotify"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/followers"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="-44dp"
+                android:layout_toRightOf="@+id/artistImgCard"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="Checkout on Spotify"
+                android:textColor="@color/green_100"
+                android:textSize="16dp" />
+
+            <View
+                android:id="@+id/horizontalLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignBottom="@id/artistImgCard"
+                android:layout_marginBottom="-17dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/popularAlbums"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/horizontalLine"
+                android:layout_marginBottom="-32dp"
+                android:text="Popular Albums"
+                android:paddingLeft="10dp"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/light_grey" />
+
+            <ImageView
+                android:id="@+id/album1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignBottom="@id/popularAlbums"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="-124dp"
+                tools:src="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/album2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignBottom="@id/popularAlbums"
+                android:layout_toRightOf="@+id/album1"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="-124dp"
+                tools:src="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/album3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignBottom="@id/popularAlbums"
+                android:layout_toRightOf="@+id/album2"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="-124dp"
+                tools:src="@tools:sample/avatars" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</ScrollView>

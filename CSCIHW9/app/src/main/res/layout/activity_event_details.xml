@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EventDetails"
+    android:orientation="vertical"
+    android:theme="@style/Theme.CSCIHW9">
+
+    <RelativeLayout
+        android:id="@+id/backFlow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15dp"
+        android:background="@color/light_black">
+
+        <ImageView
+            android:id="@+id/backFlowBtn"
+            android:layout_width="52dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            app:tint="@color/green_100"
+            android:src="@drawable/left_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/backFlowText"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:text="Back to Search"
+            android:scrollHorizontally="true"
+            android:ellipsize="marquee"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/green_100"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_toRightOf="@+id/backFlowBtn" />
+
+        <ImageView
+            android:id="@+id/facebookBtn"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/backFlowText"
+            android:src="@mipmap/facebook_round"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/twitterBtn"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/facebookBtn"
+            android:src="@mipmap/twitter_round"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/favIcon2"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/twitterBtn"
+            android:src="@drawable/favourite"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </RelativeLayout>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/backFlow">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabSelectedTextColor="@color/green_100"
+            android:background="@color/black"
+            app:tabInlineLabel="true"
+            app:tabIconTint="@color/icon_color"
+            app:tabTextColor="@color/white"
+            app:tabMode="fixed"
+            app:tabGravity="fill"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</LinearLayout>

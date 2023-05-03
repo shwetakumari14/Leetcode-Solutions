@@ -40,10 +40,12 @@
                 android:layout_width="140dp"
                 android:padding="5dp"
                 android:textSize="20dp"
-                android:text="Example Example"
-                android:ellipsize="end"
+                android:text="Example Example Example"
+                android:scrollHorizontally="true"
+                android:ellipsize="marquee"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
                 android:singleLine="true"
-                android:maxLines="1"
                 android:layout_height="wrap_content"
                 android:textColor="@color/light_grey"
                 android:layout_toRightOf="@+id/stadiumImg"
@@ -70,10 +72,12 @@
                 android:layout_alignBottom="@id/eventName"
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="-39dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:padding="5dp"
+                android:scrollHorizontally="true"
+                android:ellipsize="marquee"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
                 android:singleLine="true"
+                android:padding="5dp"
                 android:text="Venue Name"
                 android:textColor="@color/light_grey"
                 android:textSize="20dp" />
@@ -116,7 +120,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/eventTime"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="53dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="-38dp"
                 android:layout_toRightOf="@+id/genreName"
@@ -131,37 +135,17 @@
 
     </androidx.cardview.widget.CardView>
 
-<!--        <androidx.cardview.widget.CardView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="16dp">-->
-
-<!--            <RelativeLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content">-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/myImageView"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:src="@drawable/left_arrow" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/myTextView"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="My Text"-->
-<!--                    android:layout_toRightOf="@+id/myImageView"-->
-<!--                    android:layout_marginLeft="16dp" />-->
-
-<!--            </RelativeLayout>-->
-
-<!--        </androidx.cardview.widget.CardView>-->
-
-<!--    </RelativeLayout>-->
-
+<!--    <ProgressBar-->
+<!--        android:id="@+id/detailsProgress"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="700dp"-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:layout_gravity="center"/>-->
 
 </RelativeLayout>
+
+
 
 <!--<LinearLayout-->
 <!--    android:layout_width="match_parent"-->

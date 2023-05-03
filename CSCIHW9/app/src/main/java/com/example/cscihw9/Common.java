@@ -5,16 +5,18 @@ import java.util.ArrayList;
 public class Common {
 
     static public ArrayList<EventData> eventlistingData;
+    static public ArrayList<DetailsData> detailsData;
+    static public ArrayList<ArtistsData> artistsData;
+    static public ArrayList<VenueData> venueData;
 
     public Common() {
         eventlistingData = new ArrayList<>();
     }
-
-    public void setEventData(ArrayList<EventData> myObjects) {
-        this.eventlistingData = myObjects;
-    }
-
     static public ArrayList<EventData> getEventData() {
         return eventlistingData;
     }
+
+    static public ArrayList<DetailsData> getDetailsData() {return detailsData;}
+    static public ArrayList<ArtistsData> getArtistsData() {return artistsData;}
+    static public ArrayList<VenueData> getVenueData() {return venueData;}
 }

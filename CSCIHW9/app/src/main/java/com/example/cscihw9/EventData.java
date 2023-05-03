@@ -1,7 +1,5 @@
 package com.example.cscihw9;
 
-import java.lang.reflect.Array;
-
 public class EventData {
     private String  date;
     private String time;

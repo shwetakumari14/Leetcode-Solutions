@@ -3,6 +3,8 @@ package com.example.cscihw9;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -31,6 +33,8 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
@@ -54,9 +58,6 @@ public class search extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private AutoCompleteTextView autoCompleteTextView;
     private ArrayAdapter<String> adapter;
-
-    private String lat;
-    private String lng;
     private Boolean AutoDetect = false;
 
     private String category;
@@ -74,17 +75,25 @@ public class search extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-        //Spinner filling
+        CardView registerCard = view.findViewById(R.id.registerCard);
+        RelativeLayout progressBar = view.findViewById(R.id.showProgressBar);
+        registerCard.setVisibility(View.VISIBLE);
+
+        //Keyword dropdown
+        EditText keyword = view.findViewById(R.id.keyword);
+
+
+                //Spinner filling
         Spinner mySpinner = view.findViewById(R.id.category);
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_design, new String[]{"All", "Music", "Sports", "Arts & Theatre", "Film", "Miscellaneous"});
         myAdapter.setDropDownViewResource(R.layout.spinner_background);
         mySpinner.setAdapter(myAdapter);
+
         // Set up the OnItemSelectedListener to get the selected item
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 category = parent.getItemAtPosition(position).toString();
-                // Do something with the selected item
             }
 
             @Override
@@ -93,7 +102,7 @@ public class search extends Fragment {
             }
         });
 
-        EditText keyword = view.findViewById(R.id.keyword);
+
 
         //Auto Detect Check
         Switch autoDetectSwitch = view.findViewById(R.id.autoDetect);
@@ -115,7 +124,7 @@ public class search extends Fragment {
 
         //Auto complete
         autoCompleteTextView = view.findViewById(R.id.keyword);
-        adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line);
+        adapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_backgroud);
         autoCompleteTextView.setAdapter(adapter);
         autoCompleteTextView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -162,6 +171,8 @@ public class search extends Fragment {
 //                }
 
                 if (AutoDetect == true) {
+                    registerCard.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.VISIBLE);
                     RequestQueue queue = Volley.newRequestQueue(getContext());
                     String url = "https://ipinfo.io/json?token=697fc234a1cb06";
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -172,9 +183,14 @@ public class search extends Fragment {
                                     try {
                                         String temp = response.getString("loc");
                                         String[] coordinates = temp.split(",");
-                                        lat = coordinates[0];
-                                        lng = coordinates[1];
+                                        String lat = coordinates[0];
+                                        String lng = coordinates[1];
+                                        Log.d("----- ip lat ------ ", lat);
+                                        Log.d("----- ip long ------ ", lng);
                                         RequestQueue queue = Volley.newRequestQueue(getContext());
+                                        if(category.equals("All")){
+                                            category = "Default";
+                                        }
                                         String url = "https://web-sh-hw8.uc.r.appspot.com/events_listing/?keyword=" + keyword.getText().toString() + "&radius=" + distance.getText().toString() + "&category=" + category + "&latitude=" + lat + "&longitude=" + lng;
                                         Log.d("--- event listing url ---- ", url);
                                         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -190,6 +206,7 @@ public class search extends Fragment {
                                                                 JSONObject data = finalData.getJSONObject(i);
                                                                 // Do something with the dataObject, such as accessing its properties
                                                                 JSONArray dates  = data.getJSONArray("date");
+                                                                Log.d("----- dates -------- ", dates.toString());
                                                                 String date = dates.getString(0);
                                                                 String inputTime = dates.getString(1);
                                                                 SimpleDateFormat inputFormat = new SimpleDateFormat("HH:mm:ss");
@@ -233,6 +250,8 @@ public class search extends Fragment {
                     });
                     queue.add(jsonObjectRequest);
                 } else {
+                        registerCard.setVisibility(View.GONE);
+                        progressBar.setVisibility(View.VISIBLE);
                         RequestQueue queue = Volley.newRequestQueue(getContext());
                         String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location.getText().toString() + "&key=AIzaSyA-rLDdLR91LXyvPjJqBS7YE2o2kR__Mlw";
                         Log.d("---- url ----- ", url);
@@ -250,10 +269,13 @@ public class search extends Fragment {
                                                 JSONObject geoLoc = geometry.getJSONObject("location");
                                                 Double x = geoLoc.getDouble("lat");
                                                 Double y = geoLoc.getDouble("lng");
-                                                lat = Double.toString(x);
-                                                lng = Double.toString(y);
+                                                String lat = Double.toString(x);
+                                                String lng = Double.toString(y);
 
                                                 RequestQueue queue = Volley.newRequestQueue(getContext());
+                                                if(category.equals("All")){
+                                                    category = "Default";
+                                                }
                                                 String url = "https://web-sh-hw8.uc.r.appspot.com/events_listing/?keyword=" + keyword.getText().toString() + "&radius=" + distance.getText().toString() + "&category=" + category + "&latitude=" + lat + "&longitude=" + lng;
                                                 Log.d("--- event listing url ---- ", url);
                                                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -270,7 +292,11 @@ public class search extends Fragment {
                                                                         // Do something with the dataObject, such as accessing its properties
                                                                         JSONArray dates  = data.getJSONArray("date");
                                                                         String date = dates.getString(0);
-                                                                        String time = dates.getString(1);
+                                                                        String inputTime = dates.getString(1);
+                                                                        SimpleDateFormat inputFormat = new SimpleDateFormat("HH:mm:ss");
+                                                                        Date dateFormat = inputFormat.parse(inputTime);
+                                                                        SimpleDateFormat outputFormat = new SimpleDateFormat("hh:mm a");
+                                                                        String time = outputFormat.format(dateFormat);
                                                                         String icons = data.getString("icons");
                                                                         String events = data.getString("events");
                                                                         String genres = data.getString("genres");
@@ -282,6 +308,8 @@ public class search extends Fragment {
                                                                     Common.eventlistingData = listingData;
                                                                     navController.navigate(R.id.action_search2_to_eventListing2);
                                                                 } catch (JSONException e) {
+                                                                    throw new RuntimeException(e);
+                                                                } catch (ParseException e) {
                                                                     throw new RuntimeException(e);
                                                                 }
                                                             }
@@ -322,7 +350,8 @@ public class search extends Fragment {
     {
 
         RequestQueue queue_autoCom = Volley.newRequestQueue(getContext());
-        String url = "http://10.0.2.2:3001/autocomplete/?keyword=" + text;
+        String url = "https://web-sh-hw8.uc.r.appspot.com/autocomplete/?keyword=" + text;
+//        String url = "http://10.0.2.2:3001/autocomplete/?keyword=" + text;
         ArrayList<String> suggestions = new ArrayList<String>();
 
         JsonObjectRequest request_autoCom = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -368,64 +397,64 @@ public class search extends Fragment {
         myAdapter.setDropDownViewResource(R.layout.spinner_background);
         spinner.setAdapter(myAdapter);
     }
-    public void fetch_lat_long_from_ip(){
-
-        RequestQueue queue = Volley.newRequestQueue(getContext());
-        String url = "https://ipinfo.io/json?token=697fc234a1cb06";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        // Handle the API response
-                        try {
-                            String temp = response.getString("loc");
-                            String[] coordinates = temp.split(",");
-                            lat = coordinates[0];
-                            lng = coordinates[1];
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // Handle errors
-            }
-        });
-        queue.add(jsonObjectRequest);
-    }
-    public void fetch_lat_long_from_location(String location){
-        RequestQueue queue = Volley.newRequestQueue(getContext());
-        String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyA-rLDdLR91LXyvPjJqBS7YE2o2kR__Mlw";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        // Handle the API response
-                        try {
-                            String status = response.getString("status");
-                            if (status.equals("OK")) {
-                                JSONArray result = response.getJSONArray("results");
-                                JSONObject resultFirst = result.getJSONObject(0);
-                                JSONObject geometry = resultFirst.getJSONObject("geometry");
-                                JSONObject geoLoc = geometry.getJSONObject("location");
-                                Double x = geoLoc.getDouble("lat");
-                                Double y = geoLoc.getDouble("lng");
-                                lat = Double.toString(x);
-                                lng = Double.toString(y);
-                            }
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // Handle errors
-            }
-        });
-        queue.add(jsonObjectRequest);
-    }
+//    public void fetch_lat_long_from_ip(){
+//
+//        RequestQueue queue = Volley.newRequestQueue(getContext());
+//        String url = "https://ipinfo.io/json?token=697fc234a1cb06";
+//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+//                new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        // Handle the API response
+//                        try {
+//                            String temp = response.getString("loc");
+//                            String[] coordinates = temp.split(",");
+//                            lat = coordinates[0];
+//                            lng = coordinates[1];
+//                        } catch (JSONException e) {
+//                            throw new RuntimeException(e);
+//                        }
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                // Handle errors
+//            }
+//        });
+//        queue.add(jsonObjectRequest);
+//    }
+//    public void fetch_lat_long_from_location(String location){
+//        RequestQueue queue = Volley.newRequestQueue(getContext());
+//        String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyA-rLDdLR91LXyvPjJqBS7YE2o2kR__Mlw";
+//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+//                new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        // Handle the API response
+//                        try {
+//                            String status = response.getString("status");
+//                            if (status.equals("OK")) {
+//                                JSONArray result = response.getJSONArray("results");
+//                                JSONObject resultFirst = result.getJSONObject(0);
+//                                JSONObject geometry = resultFirst.getJSONObject("geometry");
+//                                JSONObject geoLoc = geometry.getJSONObject("location");
+//                                Double x = geoLoc.getDouble("lat");
+//                                Double y = geoLoc.getDouble("lng");
+//                                lat = Double.toString(x);
+//                                lng = Double.toString(y);
+//                            }
+//                        } catch (JSONException e) {
+//                            throw new RuntimeException(e);
+//                        }
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                // Handle errors
+//            }
+//        });
+//        queue.add(jsonObjectRequest);
+//    }
 
 //    public void get_event_listing_data(String keyword, String distance){
 //

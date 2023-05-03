@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,6 +28,8 @@ public class EventListingAdapter extends RecyclerView.Adapter<EventListingAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listing_data_layout, parent, false);
+        TextView eventName = view.findViewById(R.id.eventName);
+//        eventName.setSelected(true);
         return new ViewHolder(view);
     }
 
@@ -38,7 +41,7 @@ public class EventListingAdapter extends RecyclerView.Adapter<EventListingAdapte
         holder.eventTime.setText(eventData.getTime());
         holder.venueName.setText(eventData.getVenues());
         holder.genreName.setText(eventData.getGenres());
-        Picasso.get().load(eventData.getIcons()).into(holder.iconImg);
+        Picasso.get().load(eventData.getIcons()).transform(new RoundedCornersTransformation(20, 0)).into(holder.iconImg);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,15 +67,34 @@ public class EventListingAdapter extends RecyclerView.Adapter<EventListingAdapte
 
         ImageView iconImg;
 
+        ImageView fav;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
             eventName = itemView.findViewById(R.id.eventName);
+            eventName.setSelected(true);
             eventDate = itemView.findViewById(R.id.eventDate);
             eventTime = itemView.findViewById(R.id.eventTime);
             venueName = itemView.findViewById(R.id.venueName);
+            venueName.setSelected(true);
             genreName = itemView.findViewById(R.id.genreName);
             iconImg = itemView.findViewById(R.id.stadiumImg);
+            fav = itemView.findViewById(R.id.favourite);
+
+            fav.setOnClickListener(new View.OnClickListener() {
+                boolean isFav = false;
+                @Override
+                public void onClick(View view) {
+                    // Handle click event
+                    if (isFav) {
+                        fav.setImageResource(R.drawable.favourite);
+                    } else {
+                        fav.setImageResource(R.drawable.favourite_fill);
+                    }
+                    isFav = !isFav;
+                }
+            });
         }
     }
 
