@@ -24,7 +24,6 @@ public class ArtistsData {
         this.albumsThree = albumsThree;
     }
 
-
     public String getArtist_name() {return artist_name;}
     public String getPopularity() {return popularity;}
     public String getFollowers() {

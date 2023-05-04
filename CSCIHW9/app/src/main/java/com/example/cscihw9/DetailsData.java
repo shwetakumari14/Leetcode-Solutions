@@ -14,7 +14,6 @@ public class DetailsData {
     private String event_name;
     private String event_ID;
 
-
     public DetailsData(String date, String time, String artist, String venue, String genre, String price_range, String ticket_style, String ticket_text, String ticket_location, String stadium_img, String event_name, String event_ID) {
         this.date = date;
         this.time = time;

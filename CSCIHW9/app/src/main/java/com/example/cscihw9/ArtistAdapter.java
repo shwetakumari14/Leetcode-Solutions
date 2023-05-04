@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.squareup.picasso.Picasso;
 
@@ -37,17 +39,28 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ArtistsData artistData = artistsData.get(position);
-        Picasso.get().load(artistData.getArtist_img()).into(holder.artistImg);
+        Glide.with(holder.itemView.getContext())
+                .load(artistData.getArtist_img())
+                .transform(new RoundedCorners(20))
+                .into(holder.artistImg);
         holder.artistName.setText(artistData.getArtist_name());
         holder.popularityProgressText.setText(artistData.getPopularity());
         holder.followers.setText(artistData.getFollowers());
-//        holder.spotify.setText(artistData.getSpotify_link());
         String str = artistData.getPopularity();
         int num = Integer.parseInt(str);
         holder.popularityProgress.setProgress(num);
-        Picasso.get().load(artistData.getAlbumsOne()).into(holder.album1);
-        Picasso.get().load(artistData.getAlbumsTwo()).into(holder.album2);
-        Picasso.get().load(artistData.getAlbumsThree()).into(holder.album3);
+        Glide.with(holder.itemView.getContext())
+                .load(artistData.getAlbumsOne())
+                .transform(new RoundedCorners(20))
+                .into(holder.album1);
+        Glide.with(holder.itemView.getContext())
+                .load(artistData.getAlbumsTwo())
+                .transform(new RoundedCorners(20))
+                .into(holder.album2);
+        Glide.with(holder.itemView.getContext())
+                .load(artistData.getAlbumsThree())
+                .transform(new RoundedCorners(20))
+                .into(holder.album3);
 
 
         holder.spotify.setOnClickListener(new View.OnClickListener() {

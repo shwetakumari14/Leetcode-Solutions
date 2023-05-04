@@ -144,7 +144,8 @@
                             android:layout_marginBottom="10dp" />
                     </TableRow>
 
-                    <TableRow>
+                    <TableRow
+                        android:id="@+id/priceBox">
                         <TextView
                             android:text="Price Range"
                             android:textColor="@color/white"

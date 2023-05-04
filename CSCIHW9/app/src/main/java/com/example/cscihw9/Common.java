@@ -16,6 +16,10 @@ public class Common {
         return eventlistingData;
     }
 
+    static public void clearArtists() {
+        artistsData = new ArrayList<ArtistsData>();
+    }
+
     static public ArrayList<DetailsData> getDetailsData() {return detailsData;}
     static public ArrayList<ArtistsData> getArtistsData() {return artistsData;}
     static public ArrayList<VenueData> getVenueData() {return venueData;}

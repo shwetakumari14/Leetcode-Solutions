@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -27,6 +28,7 @@ public class Details extends Fragment {
     private TextView ticketStatus;
     private TextView ticketURL;
     private ImageView stadiumPic;
+    private TableRow priceBox;
     private ArrayList<DetailsData> detailsData;
 
     public Details() {
@@ -53,6 +55,7 @@ public class Details extends Fragment {
         ticketStatus = view.findViewById(R.id.ticketStatus);
         ticketURL = view.findViewById(R.id.ticketURL);
         stadiumPic = view.findViewById(R.id.stadiumPic);
+        priceBox = view.findViewById(R.id.priceBox);
 
         detailsData = Common.getDetailsData();
 
@@ -99,9 +102,9 @@ public class Details extends Fragment {
 
             String price = details.getPrice_range();
             if (price.isEmpty()) {
-                artistPrice.setVisibility(View.GONE);
+                priceBox.setVisibility(View.GONE);
             } else {
-                artistPrice.setText(price);
+                artistPrice.setText(price + " (USD)");
             }
 
             String ticketText = details.getTicket_text();

@@ -9,8 +9,10 @@ public class EventData {
     private String venues;
     private String ids;
 
+    private Boolean isFav;
 
-    public EventData(String date, String time, String icons, String events, String genres, String venues, String ids) {
+
+    public EventData(String date, String time, String icons, String events, String genres, String venues, String ids, Boolean isFav) {
         this.date = date;
         this.time = time;
         this.icons = icons;
@@ -18,9 +20,13 @@ public class EventData {
         this.genres = genres;
         this.venues = venues;
         this.ids = ids;
+        this.isFav = isFav;
     }
 
 
+    public void setIsFav(Boolean isFav) {
+        this.isFav = isFav;
+    }
     public String getDate() {return date;}
     public String getTime() {return time;}
     public String getIcons() {
@@ -38,5 +44,7 @@ public class EventData {
     public String getIds() {
         return ids;
     }
+
+    public Boolean getIsFav(){return isFav;}
 
 }

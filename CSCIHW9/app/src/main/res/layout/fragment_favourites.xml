@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".favourites">
+    android:layout_height="wrap_content">
 
-    <!-- TODO: Update blank fragment layout -->
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/recyclerView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -21,6 +25,7 @@
         <TextView
             android:id="@+id/noFav"
             android:layout_width="wrap_content"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:text="No favourites available"
             android:textStyle="bold"
@@ -28,7 +33,72 @@
             android:gravity="center"
             android:padding="6dp"
             android:layout_gravity="center"
-            android:textColor="@color/green_100"/>
+            android:textColor="@color/green_100"
+            />
+
     </androidx.cardview.widget.CardView>
 
-</FrameLayout>
+
+</RelativeLayout>
+
+
+
+    <!--<LinearLayout-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:padding="16dp"-->
+    <!--    xmlns:android="http://schemas.android.com/apk/res/android">-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/textViewName"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_weight="1"-->
+    <!--        android:textAppearance="?android:textAppearanceMedium"-->
+    <!--        android:textStyle="bold" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/textViewDescription"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_weight="1"-->
+    <!--        android:textAppearance="?android:textAppearanceMedium" />-->
+
+    <!--</LinearLayout>-->
+
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    tools:context=".favourites">-->
+
+<!--    &lt;!&ndash; TODO: Update blank fragment layout &ndash;&gt;-->
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        android:layout_marginTop="300dp"-->
+<!--        app:cardBackgroundColor="@color/black"-->
+<!--        app:cardCornerRadius="6dp"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/noFav"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="No favourites available"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="16dp"-->
+<!--            android:gravity="center"-->
+<!--            android:padding="6dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:textColor="@color/green_100"/>-->
+<!--    </androidx.cardview.widget.CardView>-->
+
+<!--</FrameLayout>-->

@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:text="Artist/Music data unavailable"
             android:textStyle="bold"
+            android:visibility="gone"
             android:textSize="16dp"
             android:gravity="center"
             android:padding="6dp"
